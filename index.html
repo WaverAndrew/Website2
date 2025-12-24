@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Andrea Bonarrigo | Nebula CV</title>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="canvas-wrapper">
+            <div id="canvas-container"></div>
+        </div>
+
+        <div id="content-wrapper">
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#" data-section="Education">Education</a></li>
+                    <li><a href="#" data-section="Work Experience">Work</a></li>
+                    <li><a href="#" data-section="Research">Research</a></li>
+                    <li><a href="#" data-section="Projects">Projects</a></li>
+                    <li><a href="#" data-section="Awards">Awards</a></li>
+                </ul>
+            </nav>
+
+            <div id="text-content">
+                <h1 id="main-title">I am</h1>
+                <h2 id="subtitle">Andrea Bonarrigo</h2>
+                <div id="bio-text">
+                    <p>I study International Economics and Management at Bocconi University. I'm currently living in
+                        Milan, spending my time reading, building, and meeting people. I most recently founded UBooks.it
+                        and interned at Amazon.</p>
+                    <p>Some of my interests:</p>
+                    <ol>
+                        <li>Artificial Intelligence & Agents</li>
+                        <li>Economics & Game Theory</li>
+                        <li>Startup Ecosystems</li>
+                        <li>Philosophy of Mind</li>
+                    </ol>
+                    <p class="cta">Reach out, I always respond and enjoy meeting new people.</p>
+                    <p><a href="mailto:andrea.bonarrigo@icloud.com">andrea.bonarrigo@icloud.com</a></p>
+                </div>
+                <div id="dynamic-content" class="hidden"></div>
+                <button id="back-btn" class="hidden">← Back</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GSAP -->
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+
+    <!-- Main Script -->
+    <script type="module" src="main.js"></script>
+</body>
+
+</html>

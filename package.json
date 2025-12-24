@@ -1,0 +1,11 @@
+{
+  "name": "nebula-cv",
+  "version": "1.0.0",
+  "description": "3D Nebula CV",
+  "scripts": {
+    "dev": "npx serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
