@@ -379,31 +379,28 @@ function onMouseMove(event) {
 // --- Event Listeners ---
 function setupEventListeners() {
     window.addEventListener('resize', onWindowResize);
-    window.addEventListener('mousemove', onMouseMove);
+    window.addEventListener('mousemove', onMouseMove); // Keep mousemove listener
 
     // Navigation Links
     document.querySelectorAll('#main-nav a').forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const section = e.target.dataset.section;
-            openSection(section);
+            e.preventDefault(); // Prevent page reload
+            const section = link.getAttribute('data-section');
+            if (section) {
+                openSection(section);
 
-            // Update active state
-            document.querySelectorAll('#main-nav a').forEach(l => l.classList.remove('active'));
-            e.target.classList.add('active');
+                // Update active state
+                document.querySelectorAll('#main-nav a').forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+            }
         });
     });
 
     // Back Button
-    document.getElementById('back-btn').addEventListener('click', () => {
-        resetView();
-    });
+    document.getElementById('back-btn').addEventListener('click', resetView);
 
-    // Home Link (Name in top left)
-    document.getElementById('home-link').addEventListener('click', (e) => {
-        e.preventDefault();
-        resetView();
-    });
+    // Home Link
+    document.getElementById('home-link').addEventListener('click', resetView);
 }
 
 function openSection(sectionName) {
