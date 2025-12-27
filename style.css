@@ -419,7 +419,8 @@ a:hover {
         left: 0;
         /* More subtle gradient: Transparent at top, darker at bottom */
         background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.6) 100%);
-        pointer-events: none;
+        pointer-events: auto;
+        /* Enable scrolling */
         /* Let clicks pass through to canvas where possible */
         padding: 8rem 2rem 6rem 2rem;
         /* Top clearance for header, bottom for navbar */
@@ -475,6 +476,11 @@ a:hover {
         display: block;
         /* Visible on mobile */
         font-size: 1.5rem;
+        font-weight: normal;
+        /* Ensure not bold */
+        -webkit-font-smoothing: antialiased;
+        /* Make font look thinner */
+        -moz-osx-font-smoothing: grayscale;
     }
 
     .nav-text {
