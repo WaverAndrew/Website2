@@ -317,6 +317,25 @@ html {
     font-style: italic;
 }
 
+#social-links {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--text-color);
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
 a {
     color: inherit;
     text-decoration: underline;
