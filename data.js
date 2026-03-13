@@ -3,6 +3,13 @@ export const cvData = {
         title: "Education",
         items: [
             {
+                title: "Massachusetts Institute of Technology (MIT)",
+                subtitle: "MSc in Data Science & Business Analytics (2026-2027)",
+                details: [
+                    "",
+                ]
+            },
+            {
                 title: "Bocconi University",
                 subtitle: "BSc in International Economics and Management (2023-Present)",
                 details: [

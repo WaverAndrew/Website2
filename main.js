@@ -51,22 +51,74 @@ function getShapePositions(type, count) {
 
             // The rest form the specific shape
             switch (type) {
-                case 'Education': // Cube (Structured Knowledge)
-                    const side = Math.cbrt(count);
-                    const half = scale * 0.6;
-                    x = (Math.random() - 0.5) * 2 * half;
-                    y = (Math.random() - 0.5) * 2 * half;
-                    z = (Math.random() - 0.5) * 2 * half;
+                case 'Education': // MIT Logo (Block Letters)
+                    const spread_edu = scale * 0.08; // Nebula fuzziness
+                    // MIT block letters layout
+                    // Total width ~3.6 scale units, centered
+                    // Letter height: scale * 1.2, letter width: scale * 0.3
+                    const lh = scale * 1.2; // letter height
+                    const lw = scale * 0.3; // stroke width
+                    const gap = scale * 0.25; // gap between letters
 
-                    // Snap to surface for wireframe look? Or volume? Volume is easier for now.
-                    // Let's do surface cube
-                    const face = Math.floor(Math.random() * 6);
-                    if (face === 0) x = half;
-                    else if (face === 1) x = -half;
-                    else if (face === 2) y = half;
-                    else if (face === 3) y = -half;
-                    else if (face === 4) z = half;
-                    else if (face === 5) z = -half;
+                    // Choose which letter to place particle in
+                    // M takes ~40%, I takes ~15%, T takes ~25%, rest scattered
+                    const letterChoice = Math.random();
+
+                    if (letterChoice < 0.40) {
+                        // --- LETTER M ---
+                        // M consists of: left pillar, right pillar, two diagonals
+                        const mWidth = scale * 1.2;
+                        const mLeft = -scale * 1.6; // starting x of M
+                        const mPart = Math.random();
+
+                        if (mPart < 0.25) {
+                            // Left vertical pillar
+                            x = mLeft + Math.random() * lw;
+                            y = (Math.random() - 0.5) * lh;
+                        } else if (mPart < 0.50) {
+                            // Right vertical pillar
+                            x = mLeft + mWidth - lw + Math.random() * lw;
+                            y = (Math.random() - 0.5) * lh;
+                        } else if (mPart < 0.75) {
+                            // Left diagonal (top-left to center-middle)
+                            const t_m = Math.random();
+                            x = mLeft + lw + t_m * (mWidth / 2 - lw);
+                            y = lh / 2 - t_m * (lh / 2);
+                        } else {
+                            // Right diagonal (top-right to center-middle)
+                            const t_m = Math.random();
+                            x = mLeft + mWidth - lw - t_m * (mWidth / 2 - lw);
+                            y = lh / 2 - t_m * (lh / 2);
+                        }
+                        z = 0;
+                    } else if (letterChoice < 0.60) {
+                        // --- LETTER I ---
+                        const iCenter = -scale * 0.15; // center x of I
+                        x = iCenter + (Math.random() - 0.5) * lw;
+                        y = (Math.random() - 0.5) * lh;
+                        z = 0;
+                    } else {
+                        // --- LETTER T ---
+                        const tLeft = scale * 0.2; // starting x of T
+                        const tWidth = scale * 1.0;
+                        const tPart = Math.random();
+
+                        if (tPart < 0.45) {
+                            // Horizontal bar (top)
+                            x = tLeft + Math.random() * tWidth;
+                            y = lh / 2 - Math.random() * lw;
+                        } else {
+                            // Vertical stem (center)
+                            x = tLeft + tWidth / 2 - lw / 2 + Math.random() * lw;
+                            y = (Math.random() - 0.5) * lh;
+                        }
+                        z = 0;
+                    }
+
+                    // Add nebula gas fuzziness
+                    x += (Math.random() - 0.5) * spread_edu;
+                    y += (Math.random() - 0.5) * spread_edu;
+                    z += (Math.random() - 0.5) * spread_edu;
                     break;
 
                 case 'Work Experience': // Palantir Logo (Ring + Chevron)
