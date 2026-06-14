@@ -40,20 +40,8 @@
   --ease-in-out: cubic-bezier(.65, 0, .35, 1);
 }
 
-html.dark {
-  color-scheme: dark;
-  --ink:        #E8E8E5;
-  --ink-deeper: #FBFBF7;
-  --ink-soft:   #98A1AC;
-  --white:      #0E1217;
-  --paper:      #14181D;
-  --blue-700:   #7BA8E0;
-  --blue-600:   #6A93C9;
-  --blue-100:   #232E3C;
-  --blue-50:    #1B2330;
-  --mute:       #4A5260;
-  --rule:       #2A3038;
-}
+/* Light-only: dark-mode palette intentionally removed so the essays never
+   adapt to the OS theme. (color-scheme: light above pins UI controls to light.) */
 
 /* ---- reset ---- */
 *        { box-sizing: border-box; }

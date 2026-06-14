@@ -1,24 +1,14 @@
 /* Essays theme — interactions
-   - dark/light toggle (persisted)
    - wordmark fades into the header once you scroll past the hero
    - timeline rail scroll-spy + click-to-jump
+   (Light-only: no dark mode, no system-preference adaptation.)
 */
 (function () {
   "use strict";
 
-  /* ---- theme (light by default; dark only when the reader opts in) ---- */
-  var root = document.documentElement;
-  if (localStorage.getItem("theme") === "dark") {
-    root.classList.add("dark");
-  }
-  document.addEventListener("click", function (e) {
-    var t = e.target.closest("[data-theme-toggle]");
-    if (!t) return;
-    root.classList.add("theme-transitioning");
-    root.classList.toggle("dark");
-    localStorage.setItem("theme", root.classList.contains("dark") ? "dark" : "light");
-    setTimeout(function () { root.classList.remove("theme-transitioning"); }, 260);
-  });
+  /* ---- force light: drop any stale stored preference / dark class ---- */
+  document.documentElement.classList.remove("dark");
+  try { localStorage.removeItem("theme"); } catch (e) {}
 
   /* ---- wordmark reveal ---- */
   var header = document.querySelector(".site-header");
