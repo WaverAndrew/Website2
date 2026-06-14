@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Shape of an Argument — Essays</title>
+  <meta name="description" content="A sample essay built on the editorial reading theme.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="../nav.css">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body class="has-hero">
+  <!-- scattered-nebula backdrop -->
+  <div id="nebula-bg"></div>
+
+  <!-- consolidated site header (shared with the nebula landing) -->
+  <div id="header-container">
+    <a id="home-link" href="../index.html">Andrea Bonarrigo</a>
+    <div id="header-subtitle">Builder. Engineer. Dreamer.</div>
+  </div>
+
+  <nav id="main-nav">
+    <ul>
+      <li><a href="../index.html?s=Education"><span class="nav-text">EDUCATION</span><i class="ri-graduation-cap-line nav-icon"></i></a></li>
+      <li><a href="../index.html?s=Work%20Experience"><span class="nav-text">WORK</span><i class="ri-briefcase-line nav-icon"></i></a></li>
+      <li><a href="../index.html?s=Research"><span class="nav-text">RESEARCH</span><i class="ri-flask-line nav-icon"></i></a></li>
+      <li><a href="../index.html?s=Projects"><span class="nav-text">PROJECTS</span><i class="ri-code-s-slash-line nav-icon"></i></a></li>
+      <li><a href="../index.html?s=Awards"><span class="nav-text">AWARDS</span><i class="ri-trophy-line nav-icon"></i></a></li>
+      <li><a href="index.html" class="active"><span class="nav-text">ESSAYS</span><i class="ri-book-2-line nav-icon"></i></a></li>
+    </ul>
+  </nav>
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero">
+    <div class="hero-title">
+      <div class="hero-kicker">Essay · Jun 2026</div>
+      <h1 class="hero-mark">The Shape<br>of an Argument</h1>
+      <p class="hero-sub">How a piece of writing earns the reader's next sentence — and the one after that.</p>
+      <p class="hero-authors">by Your Name</p>
+    </div>
+
+    <div class="hero-preamble">
+      <p>
+        This is the standfirst — the paragraph that sits under the title and
+        tells the reader what they're in for. Keep it to three or four
+        sentences. Everything below the fold is set in the reading column to
+        the right of the timeline rail.
+      </p>
+    </div>
+
+    <div class="hero-illustration">
+      <!-- swap for <img class="hero-image" src="..." alt="..."> -->
+      <div class="hero-image hero-image--placeholder" role="img" aria-label="Decorative cover artwork"></div>
+    </div>
+  </section>
+
+  <!-- ============================ BODY ============================ -->
+  <div class="body-wrap">
+    <!-- the rail builds itself from the [data-chapter] sections below -->
+    <nav class="rail" aria-label="Sections">
+      <ul class="rail-list" data-rail></ul>
+    </nav>
+
+    <article class="prose">
+      <section class="chapter" id="opening" data-chapter data-label="Opening" data-scene="1">
+        <div class="chapter-num">I</div>
+        <h2>Where to begin</h2>
+        <p class="lede">
+          The first paragraph carries more weight than any other. It decides
+          whether the second paragraph gets read at all. So spend it.
+        </p>
+        <p>
+          Each section below is a <code>&lt;section class="chapter"&gt;</code>
+          with a <code>data-chapter</code> attribute and a <code>data-label</code>.
+          The label is what shows up as a dot on the left rail, and the rail
+          tracks your scroll position automatically. Add or remove sections and
+          the rail rebuilds itself — no manual table of contents to maintain.
+        </p>
+        <blockquote>
+          <p>Pull-quotes, dialogue, and asides go in a blockquote. They sit in a tinted card to break the column.</p>
+        </blockquote>
+      </section>
+
+      <section class="chapter" id="middle" data-chapter data-label="The middle" data-scene="3">
+        <div class="chapter-num">II</div>
+        <h2>Holding the middle</h2>
+        <p>
+          The reading column is capped near 720&nbsp;pixels — about 70
+          characters a line — because that's where the eye stops getting tired.
+          Body copy is PT&nbsp;Serif at 18px with generous line-height; section
+          numbers and labels are Geist&nbsp;Mono, uppercase, widely tracked.
+          The contrast between the two is the whole personality of the design.
+        </p>
+        <p class="pull">
+          A pull-quote with <code>class="pull"</code> gets the accent rule on
+          its left edge — use it for the line you want people to screenshot.
+        </p>
+        <p>
+          You can drop in figures, too. Captions are set in mono so they read
+          as apparatus rather than prose.
+        </p>
+        <figure>
+          <div class="hero-image hero-image--placeholder" style="aspect-ratio:16/9;max-width:none"></div>
+          <figcaption>Fig. 1 — Replace with your own image and caption.</figcaption>
+        </figure>
+      </section>
+
+      <hr class="rule">
+
+      <section class="chapter" id="close" data-chapter data-label="Closing" data-scene="4">
+        <div class="chapter-num">III</div>
+        <h2>Landing it</h2>
+        <p>
+          End where the argument actually ends, not where you run out of energy.
+          The dark-mode toggle in the header is persisted to localStorage and
+          respects the reader's system preference on first visit.
+        </p>
+        <p>
+          To publish a new essay: copy this file, change the title, hero, and
+          the <code>chapter</code> sections, then add a card to
+          <code>index.html</code>. That's the whole workflow.
+        </p>
+      </section>
+    </article>
+
+    <!-- sticky artwork; layers are generated from each chapter's data-scene -->
+    <aside class="scene-wrap" aria-hidden="true">
+      <div class="scene">
+        <div class="scene-frame" data-scene-frame></div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-wordmark">Essays</div>
+        <p class="footer-strap">A small home for long-form writing.</p>
+      </div>
+      <div class="footer-meta">
+        <span>© <span data-year>2026</span> Andrea Bonarrigo</span>
+        <a href="index.html">All essays</a>
+        <a href="#">RSS</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="nebula-bg.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

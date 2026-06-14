@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Essays</title>
+  <meta name="description" content="A collection of essays.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Geist+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../theme.css">
+  <link rel="stylesheet" href="../nav.css">
+  <link rel="stylesheet" href="assets/styles.css">
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- scattered-nebula backdrop -->
+  <div id="nebula-bg"></div>
+
+  <!-- consolidated site header (shared with the nebula landing) -->
+  <div id="header-container">
+    <a id="home-link" href="../index.html">Andrea Bonarrigo</a>
+    <div id="header-subtitle">Builder. Engineer. Dreamer.</div>
+  </div>
+
+  <nav id="main-nav">
+    <ul>
+      <li><a href="../index.html?s=Education"><span class="nav-text">EDUCATION</span><i class="ri-graduation-cap-line nav-icon"></i></a></li>
+      <li><a href="../index.html?s=Work%20Experience"><span class="nav-text">WORK</span><i class="ri-briefcase-line nav-icon"></i></a></li>
+      <li><a href="../index.html?s=Research"><span class="nav-text">RESEARCH</span><i class="ri-flask-line nav-icon"></i></a></li>
+      <li><a href="../index.html?s=Projects"><span class="nav-text">PROJECTS</span><i class="ri-code-s-slash-line nav-icon"></i></a></li>
+      <li><a href="../index.html?s=Awards"><span class="nav-text">AWARDS</span><i class="ri-trophy-line nav-icon"></i></a></li>
+      <li><a href="index.html" class="active"><span class="nav-text">ESSAYS</span><i class="ri-book-2-line nav-icon"></i></a></li>
+    </ul>
+  </nav>
+
+  <main class="index-wrap">
+    <h1 class="prose-heading">Essays</h1>
+    <p class="index-lede">
+      Long-form writing on whatever holds my attention long enough to be worth
+      the trouble of explaining. Replace this line with your own.
+    </p>
+
+    <ul class="essay-list">
+      <li>
+        <a class="essay-card" href="essay.html">
+          <div class="essay-meta">Jun 2026 · 18 min read</div>
+          <h2>The Shape of an Argument</h2>
+          <p>A sample essay you can duplicate. Copy <code>essay.html</code>, change the words, and add a new card here.</p>
+        </a>
+      </li>
+      <li>
+        <a class="essay-card" href="essay.html">
+          <div class="essay-meta">May 2026 · 9 min read</div>
+          <h2>Notes on Working in Public</h2>
+          <p>Another placeholder. The list is just anchor cards — nothing magic.</p>
+        </a>
+      </li>
+      <li>
+        <a class="essay-card" href="essay.html">
+          <div class="essay-meta">Apr 2026 · 12 min read</div>
+          <h2>Why Things Take Longer Than You Think</h2>
+          <p>Swap in your real titles, dates, and one-line summaries.</p>
+        </a>
+      </li>
+    </ul>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-wordmark">Essays</div>
+        <p class="footer-strap">A small home for long-form writing.</p>
+      </div>
+      <div class="footer-meta">
+        <span>© <span data-year>2026</span> Andrea Bonarrigo</span>
+        <a href="#">RSS</a>
+        <a href="#">Email</a>
+        <a href="#">Mastodon</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="nebula-bg.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+/* =========================================================================
+   Shared theme tokens — used by the nebula landing and the essays pages so
+   the whole site reads as one continuous cream/ink surface.
+   ========================================================================= */
+:root {
+  /* paper / ink */
+  --paper:      #FAF6EE;   /* warm cream page background (not pure white) */
+  --surface:    #FFFDF7;   /* cards, scene panels — a touch lighter than paper */
+  --ink:        #1D1C1C;
+  --ink-deeper: #111111;
+  --ink-soft:   #6F777E;
+
+  /* single blue accent (shared with the essays theme) */
+  --blue-900: #001E40;
+  --blue-700: #0051AE;
+  --blue-600: #406896;
+  --blue-100: #DEE6EE;
+  --blue-50:  #EBF3FB;
+
+  --rule: #E2E2E2;
+
+  /* type */
+  --font-serif: "PT Serif", Georgia, "Times New Roman", serif;
+  --font-mono:  "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* easing */
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+}

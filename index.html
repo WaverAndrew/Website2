@@ -52,6 +52,15 @@
     }
     </script>
 
+    <!-- Shared fonts (PT Serif + Geist Mono) — matches the essays pages -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Geist+Mono:wght@400;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="theme.css">
+    <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="style.css">
     <!-- RemixIcon -->
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css" rel="stylesheet" />
@@ -72,6 +81,9 @@
         <div class="loader"></div>
     </div>
 
+    <!-- Cream overlay the nebula dissolves into before handing off to the essays list -->
+    <div id="essay-transition"></div>
+
     <div id="header-container">
         <a id="home-link">Andrea Bonarrigo</a>
         <div id="header-subtitle">Builder. Engineer. Dreamer.</div>
@@ -91,7 +103,7 @@
                         class="ri-code-s-slash-line nav-icon"></i></a></li>
             <li><a href="#" data-section="Awards"><span class="nav-text">AWARDS</span><i
                         class="ri-trophy-line nav-icon"></i></a></li>
-            <li><a href="#" data-section="Readings"><span class="nav-text">READINGS</span><i
+            <li><a href="#" data-section="Essays"><span class="nav-text">ESSAYS</span><i
                         class="ri-book-2-line nav-icon"></i></a></li>
         </ul>
     </nav>

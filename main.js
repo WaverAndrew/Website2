@@ -294,7 +294,7 @@ function init() {
         console.log("Initializing...");
         // 1. Scene Setup
         scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0x000000, 0.02); // Black fog
+        scene.fog = new THREE.FogExp2(0xFAF6EE, 0.02); // Cream fog (matches --paper)
 
         camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
         const isMobile = window.innerWidth < 768;
@@ -355,7 +355,7 @@ function init() {
 function createStarfield() {
     // 1. Background Stars (Fine dust, far away)
     const bgGeometry = new THREE.BufferGeometry();
-    const bgMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.015, transparent: true, opacity: 0.6 });
+    const bgMaterial = new THREE.PointsMaterial({ color: 0x1d1c1c, size: 0.015, transparent: true, opacity: 0.18 });
     const bgVertices = [];
     for (let i = 0; i < 10000; i++) {
         const x = (Math.random() - 0.5) * 400;
@@ -369,7 +369,7 @@ function createStarfield() {
 
     // 2. Foreground Stars (Brighter, larger, closer)
     const fgGeometry = new THREE.BufferGeometry();
-    const fgMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.05, transparent: true, opacity: 1.0 });
+    const fgMaterial = new THREE.PointsMaterial({ color: 0x1d1c1c, size: 0.04, transparent: true, opacity: 0.4 });
     const fgVertices = [];
     for (let i = 0; i < 2500; i++) {
         const x = (Math.random() - 0.5) * 300;
@@ -407,10 +407,10 @@ function createCentralNebula() {
     geometry.setAttribute('velocity', new THREE.Float32BufferAttribute(velocities, 3));
 
     const material = new THREE.PointsMaterial({
-        color: 0xffffff, // Pure White
+        color: 0x000000, // Black ink particles (tints the white disc sprite)
         size: CONFIG.particleSize * 1.5, // Slightly larger for visibility
         transparent: true,
-        opacity: 0.8, // More opaque
+        opacity: 0.85,
         blending: THREE.NormalBlending,
         map: new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png')
     });
@@ -439,11 +439,18 @@ function setupEventListeners() {
             e.preventDefault(); // Prevent page reload
             const section = link.getAttribute('data-section');
             if (section) {
-                openSection(section);
-
                 // Update active state
                 document.querySelectorAll('#main-nav a').forEach(l => l.classList.remove('active'));
                 link.classList.add('active');
+
+                // Essays is special: morph the nebula, dissolve to cream, then
+                // hand off to the standalone essays list page.
+                if (section === 'Essays') {
+                    transitionToEssays();
+                    return;
+                }
+
+                openSection(section);
             }
         });
     });
@@ -505,7 +512,7 @@ function openSection(sectionName) {
                     <div class="card-arrow">↗</div>
                 </div>
                 <div class="card-details-visible">
-                    <ul style="padding-left:1.5rem; color:#ccc; line-height:1.5; margin-top:1rem">
+                    <ul style="padding-left:1.5rem; color:var(--ink); line-height:1.5; margin-top:1rem">
                         ${item.details.map(d => `<li>${d}</li>`).join('')}
                     </ul>
                 </div>
@@ -540,8 +547,8 @@ function openSection(sectionName) {
             div.style.marginBottom = '2rem';
             div.innerHTML = `
                 <h3 style="margin-bottom:0.5rem">${item.title}</h3>
-                <p style="color:#888; margin-bottom:0.5rem"><em>${item.subtitle}</em></p>
-                <ul style="padding-left:1.5rem; color:#ccc; line-height:1.5">
+                <p style="color:var(--ink-soft); margin-bottom:0.5rem"><em>${item.subtitle}</em></p>
+                <ul style="padding-left:1.5rem; color:var(--ink); line-height:1.5">
                     ${item.details.map(d => `<li>${d}</li>`).join('')}
                 </ul>
             `;
@@ -596,13 +603,71 @@ function morphParticles(targetPositions) {
     });
 }
 
+// --- Essays Transition ---
+// The nebula morphs (into the book/"Readings" shape) and the whole view
+// dissolves into a cream screen, which then loads the essays list page. Because
+// both ends are the same cream, the page swap reads as one continuous fade.
+let isTransitioning = false;
+
+// Scatter every particle into a loose surrounding sphere — the "nebula falls
+// apart" look that carries through the fade and into the essays page.
+function getScatterPositions(count) {
+    const positions = [];
+    for (let i = 0; i < count; i++) {
+        const r = 14 + Math.random() * 26;        // spread well past the frame
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        positions.push(
+            r * Math.sin(phi) * Math.cos(theta),
+            r * Math.sin(phi) * Math.sin(theta),
+            r * Math.cos(phi)
+        );
+    }
+    return positions;
+}
+
+function transitionToEssays() {
+    if (isTransitioning) return;
+    isTransitioning = true;
+
+    // Lift the particle canvas above the cream overlay + fade the page chrome.
+    document.body.classList.add('transitioning');
+
+    const overlay = document.getElementById('essay-transition');
+    if (overlay) overlay.classList.add('active');
+
+    // 1. Blow the particles outward into a scattered cloud.
+    if (particleSystem) {
+        morphParticles(getScatterPositions(CONFIG.particleCount));
+    }
+
+    // 2. Fade the cream overlay in UNDER the still-visible scattered particles,
+    //    then ease the particles themselves out right at the end.
+    gsap.to({ p: 0 }, {
+        p: 1,
+        duration: 1.4,
+        ease: 'power2.inOut',
+        onUpdate: function () {
+            const v = this.targets()[0].p;
+            if (overlay) overlay.style.opacity = v;
+            // keep particles fully visible for most of the fade, then drop them
+            if (particleSystem) {
+                particleSystem.material.opacity = 0.85 * (1 - Math.max(0, (v - 0.7) / 0.3));
+            }
+        },
+        onComplete: () => {
+            window.location.href = 'essays/index.html';
+        }
+    });
+}
+
 // --- Animation Loop ---
 
 function onWindowResize() {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
     renderer.setSize(window.innerWidth, window.innerHeight);
-    composer.setSize(window.innerWidth, window.innerHeight);
+    if (composer) composer.setSize(window.innerWidth, window.innerHeight);
 }
 
 function animate() {
@@ -635,3 +700,19 @@ function animate() {
 }
 
 init();
+
+// If we arrived from another page with ?s=<Section>, open it straight away.
+(function openSectionFromQuery() {
+    const section = new URLSearchParams(window.location.search).get('s');
+    if (!section || !cvData[section]) return;
+    const apply = () => {
+        openSection(section);
+        const link = document.querySelector(`#main-nav a[data-section="${section}"]`);
+        if (link) {
+            document.querySelectorAll('#main-nav a').forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+        }
+    };
+    // wait a beat so the particle system exists before morphing
+    setTimeout(apply, 300);
+})();
