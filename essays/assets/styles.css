@@ -383,6 +383,32 @@ figcaption {
    Index / essay list
    ========================================================================= */
 .index-wrap { max-width: 860px; margin: 0 auto; padding: 96px var(--gutter) 120px; }
+
+/* TEMPORARY: coming-soon placeholder (see essays/index.html) */
+.coming-soon {
+  min-height: calc(100vh - 70px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.coming-soon-kicker {
+  font-family: var(--font-mono); font-weight: 600; font-size: 12px;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--blue-700);
+  margin-bottom: 18px;
+}
+.coming-soon .index-lede { margin: 20px 0 36px; }
+.coming-soon-back {
+  font-family: var(--font-mono); font-weight: 600; font-size: 13px;
+  letter-spacing: .08em; color: var(--ink); position: relative;
+}
+.coming-soon-back::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: -3px;
+  height: 1px; background: currentColor; transition: right .28s var(--ease-out);
+}
+.coming-soon-back:hover::after { right: 0; }
 .index-lede {
   font-family: var(--font-serif); font-size: clamp(20px, 2.4vw, 26px);
   line-height: 1.4; color: var(--ink-soft); max-width: 640px; margin: 24px 0 64px;
