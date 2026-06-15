@@ -1,8 +1,4 @@
 import * as THREE from 'three';
-import { FlyControls } from 'three/addons/controls/FlyControls.js';
-import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
-import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
-import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { cvData } from './data.js';
 
 // --- Configuration ---
@@ -338,16 +334,25 @@ function init() {
         // 5. Event Listeners
         setupEventListeners();
 
-        // Remove loading screen
-        setTimeout(() => {
-            document.getElementById('loading-screen').style.opacity = 0;
-            setTimeout(() => document.getElementById('loading-screen').remove(), 1000);
-        }, 1500);
-
         animate();
+
+        // Fallback: never let the loader hang if the sprite fails to load
+        setTimeout(hideLoadingScreen, 3000);
     } catch (error) {
         console.error("Initialization Error:", error);
     }
+}
+
+// Hide the loading screen as soon as the scene is genuinely ready (first frame
+// drawn + sprite texture loaded), instead of after a fixed delay.
+let loadingHidden = false;
+function hideLoadingScreen() {
+    if (loadingHidden) return;
+    loadingHidden = true;
+    const ls = document.getElementById('loading-screen');
+    if (!ls) return;
+    ls.style.opacity = 0;
+    setTimeout(() => ls.remove(), 600);
 }
 
 // --- Content Creation ---
@@ -412,7 +417,9 @@ function createCentralNebula() {
         transparent: true,
         opacity: 0.85,
         blending: THREE.NormalBlending,
-        map: new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png')
+        // Self-hosted sprite (same image, no slow cross-origin fetch). Once it's
+        // ready the scene looks final, so that's when we drop the loader.
+        map: new THREE.TextureLoader().load('assets/disc.png', hideLoadingScreen)
     });
 
     particleSystem = new THREE.Points(geometry, material);

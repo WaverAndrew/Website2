@@ -41,7 +41,7 @@ function init() {
         opacity: 0.35,
         blending: THREE.NormalBlending,
         depthWrite: false,
-        map: new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/disc.png')
+        map: new THREE.TextureLoader().load('../assets/disc.png')
     });
 
     points = new THREE.Points(geometry, material);
